@@ -151,3 +151,6 @@ helper = /opt/boxen/bin/boxen-git-credential
 
 [hub]
 protocol = https
+[user]
+	name = John Carter
+	email = johncarter@warlordofmars.net
