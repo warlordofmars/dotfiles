@@ -110,3 +110,15 @@ autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bu
 set smartindent
 set shiftwidth=4
 set expandtab
+
+set autoindent
+set copyindent
+set shiftwidth=4
+set shiftround 
+set showmatch 
+set ignorecase 
+set smartcase
+set smarttab 
+set hlsearch 
+set incsearch 
+
