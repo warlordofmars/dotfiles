@@ -122,3 +122,4 @@ set smarttab
 set hlsearch 
 set incsearch 
 
+let g:neocomplcache_enable_at_startup = 1
