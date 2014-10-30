@@ -74,6 +74,17 @@ _rdp_complete() {
 
 rdp(){
 	hostname=$1
+	#check first if we're trying to rdp to a vagrant instance
+	grep -l "$hostname.vm.box =" ~/Projects/*/Vagrantfile &> /dev/null
+	if [ $? -eq 0 ]; then
+		pwd=`pwd`
+		cd $(grep -l "$hostname.vm.box =" ~/Projects/*/Vagrantfile|sed 's/Vagrantfile//') 
+		vagrant rdp $hostname
+		cd $pwd
+		return
+	fi
+
+	#not vagrant, create .rdp file with hostname and launch
 	username=prodad\\carterjadm
 	rdp_file=/tmp/$hostname.rdp
 
