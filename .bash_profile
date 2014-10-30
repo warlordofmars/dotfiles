@@ -49,3 +49,61 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+_rdp_complete() {
+
+   # cur will hold the current word being typed 
+   local cur 
+
+   # opts will contain all of our possible completion options
+   local opts
+  
+   # Clear out the COMPREPLY array 
+   COMPREPLY=()
+
+   # Get the current word being completed
+   cur=${COMP_WORDS[COMP_CWORD]}
+
+   # Generate a list of options for completion
+   opts=$(for i in $(ls /tmp/*.rdp); do echo $i | sed 's#/tmp/\(.*\)\.rdp#\1#'; done)
+
+   # Use compgen to populate the COMPREPLY list to be presented
+   COMPREPLY=( $( compgen -W "${opts}" -- "${cur}" ) )
+
+}
+
+rdp(){
+	hostname=$1
+	username=prodad\\carterjadm
+	rdp_file=/tmp/$hostname.rdp
+
+	(
+	cat << EOF
+screen mode id:i:2
+use multimon:i:1
+session bpp:i:32
+full address:s:$hostname
+audiomode:i:0
+username:s:$username
+disable wallpaper:i:0
+disable full window drag:i:0
+disable menu anims:i:0
+disable themes:i:0
+alternate shell:s:
+shell working directory:s:
+authentication level:i:2
+connect to console:i:0
+gatewayusagemethod:i:0
+disable cursor setting:i:0
+allow font smoothing:i:1
+allow desktop composition:i:1
+redirectprinters:i:0
+bookmarktype:i:3
+use redirection server name:i:0
+EOF
+	) > $rdp_file
+
+	open $rdp_file
+}
+
+complete -o default -F _rdp_complete rdp
