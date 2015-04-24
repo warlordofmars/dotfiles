@@ -65,7 +65,7 @@ _rdp_complete() {
    cur=${COMP_WORDS[COMP_CWORD]}
 
    # Generate a list of options for completion
-   opts=$(for i in $(ls /tmp/*.rdp); do echo $i | sed 's#/tmp/\(.*\)\.rdp#\1#'; done)
+   opts=$(for i in $(ls ~/.rdp/*.rdp); do echo $i | sed 's#/Users/carterj/.rdp/\(.*\)\.rdp#\1#'; done)
 
    # Use compgen to populate the COMPREPLY list to be presented
    COMPREPLY=( $( compgen -W "${opts}" -- "${cur}" ) )
@@ -74,24 +74,31 @@ _rdp_complete() {
 
 rdp(){
 	hostname=$1
+	rdp_dir=~/.rdp
 	#check first if we're trying to rdp to a vagrant instance
 	grep -l "$hostname.vm.box =" ~/Projects/*/Vagrantfile &> /dev/null
 	if [ $? -eq 0 ]; then
 		pwd=`pwd`
-		cd $(grep -l "$hostname.vm.box =" ~/Projects/*/Vagrantfile|sed 's/Vagrantfile//') 
-		vagrant rdp $hostname
+		cd $(grep -l "$hostname.vm.box =" ~/Projects/*/Vagrantfile|sed 's/Vagrantfile//')
+		vagrant status $hostname | grep $hostname | grep up &> /dev/null
+		if [ $? -eq 0 ]; then
+			vagrant rdp $hostname
+		else
+			vagrant up $hostname
+			vagrant rdp $hostname
+		fi
 		cd $pwd
 		return
 	fi
 
 	#not vagrant, create .rdp file with hostname and launch
 	username=prodad\\carterjadm
-	rdp_file=/tmp/$hostname.rdp
+	rdp_file=$rdp_dir/$hostname.rdp
 
 	(
 	cat << EOF
-screen mode id:i:2
-use multimon:i:1
+screen mode id:i:3
+use multimon:i:0
 session bpp:i:32
 full address:s:$hostname
 audiomode:i:0
