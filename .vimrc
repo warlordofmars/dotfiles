@@ -102,7 +102,7 @@ if has("autocmd")
 	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
 endif
 
-execute pathogen#infect()
+" execute pathogen#infect()
 
 autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
 autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
@@ -114,12 +114,12 @@ set expandtab
 set autoindent
 set copyindent
 set shiftwidth=4
-set shiftround 
-set showmatch 
-set ignorecase 
+set shiftround
+set showmatch
+set ignorecase
 set smartcase
-set smarttab 
-set hlsearch 
-set incsearch 
+set smarttab
+set hlsearch
+set incsearch
 
 let g:neocomplcache_enable_at_startup = 1
