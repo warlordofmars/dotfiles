@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+DOTFILESDIRREL=$(dirname $0)
+cd $DOTFILESDIRREL/..
+DOTFILESDIR=$(pwd -P)
+
+for DOTFILE in $(ls -A); do
+
+    if [[ $DOTFILE == .* ]]; then
+        HOMEFILE="$HOME/$DOTFILE"
+        [ -d $DOTFILE ] && DOTFILE="$DOTFILE/"
+        DIRFILE="$DOTFILESDIR/$DOTFILE"
+
+        # echo $DOTFILE | egrep -q '(^scripts/$|\.md$)' && continue
+
+        if [ -L "$HOMEFILE" ] && ! [ -d $DOTFILE ]; then
+            ln -sfv "$DIRFILE" "$HOMEFILE"
+        else
+            rm -rv "$HOMEFILE"
+            ln -sv "$DIRFILE" "$HOMEFILE"
+        fi
+    fi
+done
+
+# Install the Solarized Dark theme for iTerm
+open "${DOTFILESDIR}/scripts/Solarized Dark.itermcolors"
+
+# Don’t display the annoying prompt when quitting iTerm
+defaults write com.googlecode.iterm2 PromptOnQuit -bool false
