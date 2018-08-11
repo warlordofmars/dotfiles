@@ -1,0 +1,48 @@
+{
+	"name": "vscode-brewfile",
+	"displayName": "Brewfile",
+	"description": "Syntax Highlighting for Brewfile",
+	"version": "1.0.0",
+	"publisher": "sharat",
+	"engines": {
+		"vscode": "^1.12.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"workspaceContains:Brewfile"
+	],
+	"main": "./extension",
+	"contributes": {
+		"languages": [
+			{
+				"id": "ruby",
+				"aliases": [
+					"Ruby",
+					"ruby"
+				],
+				"filenamePatterns": [
+					"Brewfile"
+				]
+			}
+		]
+	},
+	"scripts": {
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^2.0.3",
+		"vscode": "^1.0.0",
+		"mocha": "^2.3.3",
+		"eslint": "^3.6.0",
+		"@types/node": "^6.0.40",
+		"@types/mocha": "^2.2.32"
+	},
+	"__metadata": {
+		"id": "a8db5896-13bd-4701-8f07-0cd495261291",
+		"publisherId": "1eadf443-8a6a-4a58-b069-943ec42fbaeb",
+		"publisherDisplayName": "sharat"
+	}
+}

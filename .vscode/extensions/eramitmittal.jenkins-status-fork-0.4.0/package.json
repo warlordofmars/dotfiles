@@ -1,0 +1,79 @@
+{
+	"name": "jenkins-status-fork",
+	"displayName": "Jenkins Status (fork)",
+	"description": "View your project's Jenkins status inside Visual Studio Code (forked from jenkins-status extension to allow multiple job configuration). This extension will be removed once changes have been merged in original one",
+	"version": "0.4.0",
+	"publisher": "eramitmittal",
+	"galleryBanner": {
+		"color": "#168bb9",
+		"theme": "dark"
+	},
+	"engines": {
+		"vscode": "^0.10.10"
+	},
+	"categories": [
+		"Other"
+	],
+	"keywords": [
+		"jenkins",
+		"status"
+	],
+	"activationEvents": [
+		"onCommand:jenkins.updateStatus",
+		"onCommand:jenkins.openInJenkins",
+		"onCommand:jenkins.openInJenkinsConsoleOutput",
+		"workspaceContains:.jenkins"
+	],
+	"main": "./out/src/extension",
+	"icon": "images/icon.png",
+	"license": "SEE LICENSE IN LICENSE.md",
+	"homepage": "https://github.com/eramitmittal/vscode-jenkins-status/blob/master/README.md",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/eramitmittal/vscode-jenkins-status.git"
+	},
+	"bugs": {
+		"url": "https://github.com/eramitmittal/vscode-jenkins-status/issues"
+	},
+	"contributes": {
+		"commands": [
+			{
+				"command": "jenkins.updateStatus",
+				"title": "Jenkins: Update Status"
+			},
+			{
+				"command": "jenkins.openInJenkins",
+				"title": "Jenkins: Open in Jenkins"
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"title": "Jenkins Status Configuration",
+			"properties": {
+				"jenkins.polling": {
+					"type": "integer",
+					"default": 0,
+					"description": "Defines a polling (in minutes) for automatic status update. 0 (zero) means 'no update'"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+		"compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install"
+	},
+	"dependencies": {
+		"request": "^2.72.0",
+		"open": "^0.0.5"
+	},
+	"devDependencies": {
+		"typescript": "^1.8.5",
+		"vscode": "^0.11.0"
+	},
+	"__metadata": {
+		"id": "535634dc-912e-4610-bc9e-62f6b9b85949",
+		"publisherId": "37a790be-a24c-49d7-a31f-62e9ea789229",
+		"publisherDisplayName": "Amit Mittal"
+	}
+}

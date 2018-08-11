@@ -1,0 +1,34 @@
+{
+	"name": "puppet-snippets",
+	"displayName": "Puppet Snippets",
+	"description": "Puppet related code snippets.",
+	"version": "0.1.0",
+	"publisher": "bhurt",
+	"repository": {
+		"type": "GIT",
+		"url": "https://github.com/RandomNoun7/puppet_vscode_snippets"
+	},
+	"engines": {
+		"vscode": "^1.0.0"
+	},
+	"categories": [
+		"Snippets"
+	],
+	"contributes": {
+		"snippets": [
+			{
+				"language": "ruby",
+				"path": "./snippets/ruby.json"
+			},
+			{
+				"language": "markdown",
+				"path": "./snippets/markdown.json"
+			}
+		]
+	},
+	"__metadata": {
+		"id": "be8c1d65-2a1b-42cf-bf0a-9bda2a47f007",
+		"publisherId": "38b5d511-2d08-40b9-a36f-cd982c99cd0b",
+		"publisherDisplayName": "bhurt"
+	}
+}
