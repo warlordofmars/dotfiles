@@ -65,7 +65,7 @@
 [core]
 
 	# Use custom `.gitignore` and `.gitattributes`
-	excludesfile = /opt/boxen/config/git/gitignore
+	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
 
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error
@@ -146,8 +146,8 @@
 
 	insteadOf = "gist:"
 
-[credential]
-helper = /opt/boxen/bin/boxen-git-credential
+# [credential]
+# helper = /opt/boxen/bin/boxen-git-credential
 
 [hub]
 protocol = https
