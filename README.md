@@ -10,6 +10,8 @@ To run the script:
 It should generate some output similar to this:
 
     $ ./scripts/setup
+    /Users/john/Library/Application Support/Code/User/settings.json
+    /Users/john/Library/Application Support/Code/User/settings.json -> /Users/john/.dotfiles/vscode-settings/settings.json
     /Users/john/.aliases -> /Users/john/.dotfiles/.aliases
     /Users/john/.bash_profile -> /Users/john/.dotfiles/.bash_profile
     /Users/john/.bash_prompt -> /Users/john/.dotfiles/.bash_prompt
@@ -17,8 +19,6 @@ It should generate some output similar to this:
     /Users/john/.curlrc -> /Users/john/.dotfiles/.curlrc
     /Users/john/.exports -> /Users/john/.dotfiles/.exports
     /Users/john/.functions -> /Users/john/.dotfiles/.functions
-    /Users/john/.git
-    /Users/john/.git -> /Users/john/.dotfiles/.git/
     /Users/john/.gitattributes -> /Users/john/.dotfiles/.gitattributes
     /Users/john/.gitconfig -> /Users/john/.dotfiles/.gitconfig
     /Users/john/.gitignore -> /Users/john/.dotfiles/.gitignore
@@ -29,5 +29,3 @@ It should generate some output similar to this:
     /Users/john/.vim -> /Users/john/.dotfiles/.vim/
     /Users/john/.vimrc -> /Users/john/.dotfiles/.vimrc
     /Users/john/.wgetrc -> /Users/john/.dotfiles/.wgetrc
-
-It will also be installing the Solarized Dark color scheme for iTerm2.  This will open a new dialog window for you to allow this, or ignore if it is already present.
