@@ -1,4 +1,7 @@
 {
     "explorer.confirmDelete": false,
-    "workbench.colorTheme": "Better Solarized Dark"
+    "workbench.colorTheme": "Better Solarized Dark",
+    "gitlens.advanced.messages": {
+        "suppressShowKeyBindingsNotice": true
+    }
 }
