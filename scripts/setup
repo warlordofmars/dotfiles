@@ -8,14 +8,11 @@ DOTFILESDIR=$(pwd -P)
 [ $(uname -s) = "Linux" ] && export LINUX=1 && export UNIX=1
 uname -s | grep -q "_NT-" && export WINDOWS=1
 
-if [ $MACOS ]
-then
+if [ $MACOS ]; then
   VSCODE="$HOME/Library/Application Support/Code/User"
-elif [ $LINUX ]
-then
+elif [ $LINUX ]; then
   VSCODE="$HOME/.config/Code/User"
-elif [ $WINDOWS ]
-then
+elif [ $WINDOWS ]; then
   VSCODE="$APPDATA/Code/User"
 fi
 
@@ -31,8 +28,6 @@ for DOTFILE in $(ls -A); do
         [ -d $DOTFILE ] && DOTFILE="$DOTFILE/"
         DIRFILE="$DOTFILESDIR/$DOTFILE"
 
-        # echo $DOTFILE | egrep -q '(^scripts/$|\.md$)' && continue
-
         if [ -L "$HOMEFILE" ] && ! [ -d $DOTFILE ]; then
             ln -sfv "$DIRFILE" "$HOMEFILE"
         else
@@ -42,11 +37,12 @@ for DOTFILE in $(ls -A); do
     fi
 done
 
-# # Install the Solarized Dark theme for iTerm
-# open "${DOTFILESDIR}/scripts/Solarized Dark.itermcolors"
+if [ $MACOS ]; then
 
-# Specify the preferences directory
-defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.dotfiles/iterm2"
+    # Specify the preferences directory
+    defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$HOME/.dotfiles/iterm2"
 
-# Tell iTerm2 to use the custom preferences in the directory
-defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+    # Tell iTerm2 to use the custom preferences in the directory
+    defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+
+fi
