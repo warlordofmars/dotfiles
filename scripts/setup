@@ -21,20 +21,19 @@ if [ -d "$VSCODE" ]; then
     ln -sv "$DOTFILESDIR/vscode-settings/settings.json" "$VSCODE/settings.json"
 fi
 
-for DOTFILE in $(ls -A); do
+for DOTFILE in $(ls -d .* | egrep -v '^.$|^..$|^.git$'); do
 
-    if [[ $DOTFILE == .* ]] && [[ $DOTFILE != .git ]]; then
-        HOMEFILE="$HOME/$DOTFILE"
-        [ -d $DOTFILE ] && DOTFILE="$DOTFILE/"
-        DIRFILE="$DOTFILESDIR/$DOTFILE"
+    HOMEFILE="$HOME/$DOTFILE"
+    [ -d $DOTFILE ] && DOTFILE="$DOTFILE/"
+    DIRFILE="$DOTFILESDIR/$DOTFILE"
 
-        if [ -L "$HOMEFILE" ] && ! [ -d $DOTFILE ]; then
-            ln -sfv "$DIRFILE" "$HOMEFILE"
-        else
-            rm -rv "$HOMEFILE"
-            ln -sv "$DIRFILE" "$HOMEFILE"
-        fi
+    if [ -L "$HOMEFILE" ] && ! [ -d $DOTFILE ]; then
+        ln -sfv "$DIRFILE" "$HOMEFILE"
+    else
+        rm -rv "$HOMEFILE"
+        ln -sv "$DIRFILE" "$HOMEFILE"
     fi
+    
 done
 
 if [ $MACOS ]; then
