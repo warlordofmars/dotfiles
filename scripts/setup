@@ -4,9 +4,29 @@ DOTFILESDIRREL=$(dirname $0)
 cd $DOTFILESDIRREL/..
 DOTFILESDIR=$(pwd -P)
 
+[ $(uname -s) = "Darwin" ] && export MACOS=1 && export UNIX=1
+[ $(uname -s) = "Linux" ] && export LINUX=1 && export UNIX=1
+uname -s | grep -q "_NT-" && export WINDOWS=1
+
+if [ $MACOS ]
+then
+  VSCODE="$HOME/Library/Application Support/Code/User"
+elif [ $LINUX ]
+then
+  VSCODE="$HOME/.config/Code/User"
+elif [ $WINDOWS ]
+then
+  VSCODE="$APPDATA/Code/User"
+fi
+
+if [ -d "$VSCODE" ]; then
+    rm -rv "$VSCODE/settings.json"
+    ln -sv "$DOTFILESDIR/vscode-settings/settings.json" "$VSCODE/settings.json"
+fi
+
 for DOTFILE in $(ls -A); do
 
-    if [[ $DOTFILE == .* ]]; then
+    if [[ $DOTFILE == .* ]] && [[ $DOTFILE != .git ]]; then
         HOMEFILE="$HOME/$DOTFILE"
         [ -d $DOTFILE ] && DOTFILE="$DOTFILE/"
         DIRFILE="$DOTFILESDIR/$DOTFILE"
