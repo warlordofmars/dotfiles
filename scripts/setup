@@ -21,6 +21,10 @@ if [ -d "$VSCODE" ]; then
     ln -sv "$DOTFILESDIR/vscode-settings/settings.json" "$VSCODE/settings.json"
 fi
 
+mkdir -p $HOME/.ssh
+rm -fv $HOME/.ssh/config
+ln -sv $DOTFILESDIR/ssh-config $HOME/.ssh/config
+
 for DOTFILE in $(ls -d .* | egrep -v '^.$|^..$|^.git$'); do
 
     HOMEFILE="$HOME/$DOTFILE"
