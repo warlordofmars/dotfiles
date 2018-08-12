@@ -3,5 +3,6 @@
     "workbench.colorTheme": "Better Solarized Dark",
     "gitlens.advanced.messages": {
         "suppressShowKeyBindingsNotice": true
-    }
+    },
+    "git.autofetch": true
 }
